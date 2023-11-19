@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Record Management</title>
+    <style>
+      /* CSS styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn {
+        padding: 8px 12px;
+        margin-bottom: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #45a049;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .form-group input[type="text"],
+      .form-group input[type="number"] {
+        width: calc(100% - 10px);
+        padding: 8px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+      }
+
+      .record-form {
+        display: none;
+      }
+
+      .record-form.active {
+        display: block;
+      }
+      .activity {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
+  </head >
+  <body class=bg-cover bg-center h-screen  style="background-image: url('newrec.jpg'); background-size: cover;">
+    <div class="container">
+      <button class="btn" onclick="showRecordOptions()">Add Record</button>
+      <div id="recordOptions" style="display: none">
+        <button class="btn" onclick="showForm('cdrForm')">CDR</button>
+        <button class="btn" onclick="showForm('idprForm')">IDPR</button>
+        <button class="btn" onclick="showForm('bankAccountForm')">
+          Bank Account
+        </button>
+        <button class="btn" onclick="showForm('othersForm')">Others</button>
+      </div>
+      <!-- //second grp of buttons -->
+      <div class="record-form" id="cdrForm">
+        <h3>CDR Details</h3>
+        <form id="cdrFromDetails">
+          <div class="form-group">
+            <label for="Company">Company Name:</label>
+            <input type="text" id="Company" name="Company" required />
+          </div>
+          <div class="form-group">
+            <label for="Phone">Phone NO:</label>
+            <input type="text" id="Phone" name="Phone" required />
+          </div>
+          <div class="form-group activity">
+            <div><label for="activity">Activity:</label></div>
+            <div>
+              <form id="otherFilesUploadForm">
+                <div class="form-group">
+                  <input
+                    type="file"
+                    id="otherFiles"
+                    name="otherFiles"
+                    multiple
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="record-form" id="idprForm">
+        <h3>IDPR Details</h3>
+        <button class="btn" onclick="showPersonalDetailsForm('idprForm')">
+          Personal Details
+        </button>
+        <button class="btn" onclick="showCriminalDetailsForm('idprForm')">
+          Criminal Details
+        </button>
+        <button class="btn" onclick="showSocialMediaForm('idprForm')">
+          Social Media
+        </button>
+      </div>
+
+      <div class="record-form" id="bankAccountForm">
+        <h3>Bank Account Details</h3>
+        <form id="bankForm">
+          <div class="form-group">
+            <label for="firNo">FIR No.:</label>
+            <input type="text" id="firNo" name="firNo" required />
+          </div>
+          <div class="form-group">
+            <label for="bankName">Bank Name:</label>
+            <input type="text" id="bankName" name="bankName" required />
+          </div>
+          <div class="form-group">
+            <label for="phoneNo">Phone No.:</label>
+            <input type="text" id="phoneNo" name="phoneNo" required />
+          </div>
+          <div class="form-group">
+            <label for="panID">PAN ID:</label>
+            <input type="text" id="panID" name="panID" required />
+          </div>
+          <div class="form-group">
+            <label for="transferHistory">Transfer History:</label>
+            <input type="file" id="transferHistory" name="transferHistory" />
+          </div>
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="record-form" id="personalDetailsForm">
+        <h4>Personal Details</h4>
+        <form id="personalDetails">
+          <div class="form-group">
+            <label for="firNumber">FIR Number:</label>
+            <input type="text" id="firNumber" name="firNumber" required />
+          </div>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <!-- Add other fields for personal details as per your requirement -->
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required />
+          </div>
+          <div class="form-group">
+            <label for="bloodGroup">Blood Group:</label>
+            <input type="text" id="bloodGroup" name="bloodGroup" required />
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required />
+          </div>
+          <div class="form-group">
+            <label for="height">Height:</label>
+            <input type="number" id="height" name="height" required />
+          </div>
+          <div class="form-group">
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" name="weight" required />
+          </div>
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="record-form" id="criminalDetailsForm">
+        <h3>Criminal Details</h3>
+        <form id="criminalDetails">
+          <div class="form-group">
+            <label for="firNumber">Crime commited:</label>
+            <input type="text" id="firNumber" name="firNumber" required />
+          </div>
+          <div class="form-group">
+            <label for="name">Punishment:</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <!-- Add other fields for personal details as per your requirement -->
+          <div class="form-group">
+            <label for="age">Punishment period:</label>
+            <input type="number" id="age" name="age" required />
+          </div>
+          <div class="form-group">
+            <label for="bloodGroup">Fine:</label>
+            <input type="text" id="bloodGroup" name="bloodGroup" required />
+          </div>
+
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="record-form" id="socialMediaForm">
+        <h3>Social Media</h3>
+        <form id="socialMedia">
+          <div class="form-group">
+            <label for="firNumber">FIR Number:</label>
+            <input type="text" id="firNumber" name="firNumber" required />
+          </div>
+          <div class="form-group">
+            <label for="appWebsite">App/Website:</label>
+            <input type="text" id="appWebsite" name="appWebsite" required />
+          </div>
+          <div class="form-group">
+            <label for="mediaFile">Upload File:</label>
+            <input type="file" id="mediaFile" name="mediaFile" />
+          </div>
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="record-form" id="othersForm">
+        <h3>Others</h3>
+        <button class="btn" onclick="showOtherFilesForm()">
+          Add Other Files
+        </button>
+        <div id="otherFilesForm" style="display: none">
+          <form id="otherFilesUploadForm">
+            <div class="form-group">
+              <label for="otherFiles">Upload Files:</label>
+              <input type="file" id="otherFiles" name="otherFiles" multiple />
+            </div>
+            <div class="form-group">
+              <button type="submit">Upload</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showRecordOptions() {
+        document.getElementById("recordOptions").style.display = "block";
+      }
+
+      function showForm(formId) {
+        const forms = document.querySelectorAll(".record-form");
+        var personalDetailsForm = document.getElementById(
+          "personalDetailsForm"
+        );
+        var socialMediaForm = document.getElementById("socialMediaForm");
+        var criminalDetailsForm = document.getElementById(
+          "criminalDetailsForm"
+        );
+        forms.forEach((form) => {
+          if (form.id === formId) {
+            form.classList.add("active");
+            personalDetailsForm.style.display = "none";
+            socialMediaForm.style.display = "none";
+            criminalDetailsForm.style.display = "none";
+          } else {
+            form.classList.remove("active");
+          }
+        });
+      }
+
+      function showOtherFilesForm() {
+        var otherFilesForm = document.getElementById("otherFilesForm");
+
+        if (
+          otherFilesForm.style.display === "none" ||
+          otherFilesForm.style.display === ""
+        ) {
+          otherFilesForm.style.display = "block";
+        } else {
+          otherFilesForm.style.display = "none";
+        }
+      }
+
+      function showPersonalDetailsForm(formid) {
+        console.log(formid);
+        var personalDetailsForm = document.getElementById(
+          "personalDetailsForm"
+        );
+        var socialMediaForm = document.getElementById("socialMediaForm");
+        var criminalDetailsForm = document.getElementById(
+          "criminalDetailsForm"
+        );
+
+        if (
+          personalDetailsForm.style.display === "none" ||
+          personalDetailsForm.style.display === ""
+        ) {
+          personalDetailsForm.style.display = "block";
+          socialMediaForm.style.display = "none";
+          criminalDetailsForm.style.display = "none";
+        } else {
+          personalDetailsForm.style.display = "none";
+        }
+      }
+
+      function showCriminalDetailsForm(formid) {
+        var personalDetailsForm = document.getElementById(
+          "personalDetailsForm"
+        );
+        var socialMediaForm = document.getElementById("socialMediaForm");
+        var criminalDetailsForm = document.getElementById(
+          "criminalDetailsForm"
+        );
+
+        if (
+          criminalDetailsForm.style.display === "none" ||
+          criminalDetailsForm.style.display === ""
+        ) {
+          personalDetailsForm.style.display = "none";
+          socialMediaForm.style.display = "none";
+          criminalDetailsForm.style.display = "block";
+        } else {
+          criminalDetailsForm.style.display = "none";
+        }
+      }
+
+      function showSocialMediaForm(formid) {
+        var personalDetailsForm = document.getElementById(
+          "personalDetailsForm"
+        );
+        var socialMediaForm = document.getElementById("socialMediaForm");
+        var criminalDetailsForm = document.getElementById(
+          "criminalDetailsForm"
+        );
+
+        if (
+          socialMediaForm.style.display === "none" ||
+          socialMediaForm.style.display === ""
+        ) {
+          socialMediaForm.style.display = "block";
+          personalDetailsForm.style.display = "none";
+          criminalDetailsForm.style.display = "none";
+        } else {
+          socialMediaForm.style.display = "none";
+        }
+      }
+
+      // JavaScript for handling bank form submission
+      document
+        .getElementById("bankForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let firNo = document.getElementById("firNo").value;
+          let bankName = document.getElementById("bankName").value;
+          let phoneNo = document.getElementById("phoneNo").value;
+          let panID = document.getElementById("panID").value;
+          let transferHistory =
+            document.getElementById("transferHistory").files[0];
+
+          console.log("FIR No.:", firNo);
+          console.log("Bank Name:", bankName);
+          console.log("Phone No.:", phoneNo);
+          console.log("PAN ID:", panID);
+          console.log("Transfer History File:", transferHistory);
+        });
+
+      // JavaScript for handling other files upload
+      document
+        .getElementById("otherFilesUploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let otherFiles = document.getElementById("otherFiles").files;
+
+          console.log("Uploaded Other Files:", otherFiles);
+          // Add code to handle the uploaded files, such as sending them to a server or performing other operations.
+        });
+    </script>
+  </body>
+</html>
